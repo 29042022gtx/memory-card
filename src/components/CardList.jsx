@@ -5,62 +5,62 @@ const items = [
   {
     id: '01',
     name: 'Pikachu',
-    imgURL: 'cards.svg',
+    imgURL: 'pokemon/pikachu.png',
   },
   {
     id: '02',
     name: 'Bulbasaur',
-    imgURL: 'cards.svg',
+    imgURL: 'pokemon/bulbasaur.png',
   },
   {
     id: '03',
     name: 'Charmander',
-    imgURL: 'cards.svg',
+    imgURL: 'pokemon/charmander.png',
   },
   {
     id: '04',
-    name: 'Squitle',
-    imgURL: 'cards.svg',
+    name: 'Squirtle',
+    imgURL: 'pokemon/squirtle.png',
   },
   {
     id: '05',
     name: 'Togepi',
-    imgURL: 'cards.svg',
+    imgURL: 'pokemon/togepi.png',
   },
   {
     id: '06',
-    name: 'Emolga',
-    imgURL: 'cards.svg',
+    name: 'Nidoran',
+    imgURL: 'pokemon/nidoran.png',
   },
   {
     id: '07',
     name: 'Sandshrew',
-    imgURL: 'cards.svg',
+    imgURL: 'pokemon/sandshrew.png',
   },
   {
     id: '08',
-    name: 'Snivy',
-    imgURL: 'cards.svg',
+    name: 'Psyduck',
+    imgURL: 'pokemon/psyduck.png',
   },
   {
     id: '09',
     name: 'Jigglypuff',
-    imgURL: 'cards.svg',
+    imgURL: 'pokemon/jigglypuff.png',
   },
   {
     id: '10',
     name: 'Cubone',
-    imgURL: 'cards.svg',
+    imgURL: 'pokemon/cubone.png',
   },
   {
     id: '11',
     name: 'Cyndaquil',
-    imgURL: 'cards.svg',
+    imgURL: 'pokemon/cyndaquil.png',
   },
   {
     id: '12',
     name: 'Eevee',
-    imgURL: 'cards.svg',
+    imgURL: 'pokemon/eevee.png',
   },
 ];
 
@@ -104,9 +104,10 @@ function Card({ title, imgURL, handleClick }) {
 }
 
 export function CardList() {
+  const [shuffledItems, setShuffledItems] = useState(getShuffledItems());
   const [clickedCardIds, setClickedCardIds] = useState([]);
   const [highestScore, setHighestScore] = useState(0);
-  const [isFetchedImage, setIsFetchedImage] = useState(false);
+  const [iconType, setIconType] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -122,44 +123,53 @@ export function CardList() {
           item.imgURL = data.data[index].images.original.url;
         });
       } catch (error) {
-        const urls = [
-          'https://media2.giphy.com/media/o3ZZFsfNFzMA0jUxve/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media2.giphy.com/media/wxz1jH90w7alW/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media2.giphy.com/media/PolhGubb9tpbP2Y3mg/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media0.giphy.com/media/yeVsOxv8w1JrPeGbQ3/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media1.giphy.com/media/N7UQCEtGgRMRi/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media2.giphy.com/media/oxVmNOyumnOKMFOyAu/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media1.giphy.com/media/6YdUXFezUIlaYRHsYk/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media3.giphy.com/media/tDJfaLVF0gHV90lxZj/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media2.giphy.com/media/8a0pNHvZ9Wij48VWA1/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media1.giphy.com/media/UAVLJelfV2lTKEcbg8/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media4.giphy.com/media/JUEYUdlHLNxF4NMKyR/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-          'https://media4.giphy.com/media/WRMUcksbxdWziK0T08/giphy.gif?cid=4a9de34adha38k58vp5rn1p43ols8rk777i1q6jb69qiqw4n&ep=v1_gifs_search&rid=giphy.gif&ct=g',
-        ];
-        items.forEach((item, index) => {
-          item.imgURL = urls[index % urls.length];
-        });
         console.error(error.message);
       }
-      setIsFetchedImage(true);
+      setIconType('gif');
     })();
   }, []);
 
   return (
     <section className="content-wrapper">
+      <div>
+        <label
+          style={{ userSelect: 'none' }}
+          htmlFor="pngIcon"
+        >
+          PNG
+        </label>
+        &nbsp;
+        <input
+          type="checkbox"
+          id="pngIcon"
+          className="form-check-input"
+          onChange={(e) => {
+            if (!e.target.checked) {
+              setIconType('');
+              return;
+            }
+            setIconType('png');
+          }}
+        />
+      </div>
       <div className="statistics">
         <div>Score: {clickedCardIds.length}</div>
         <div>Highest score: {highestScore}</div>
       </div>
       <div className="card-list">
-        {getShuffledItems().map((item) => {
+        {shuffledItems.map((item) => {
           return (
             <Card
               key={item.id}
               title={item.name}
-              imgURL={item.imgURL}
+              imgURL={
+                iconType == 'png'
+                  ? `pokemon/${item.name.toLowerCase()}.png`
+                  : item.imgURL
+              }
               handleClick={() => {
                 document.activeElement.blur();
+                setShuffledItems(getShuffledItems());
                 if (clickedCardIds.includes(item.id)) {
                   setClickedCardIds([]);
                   return;

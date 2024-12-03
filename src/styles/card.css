@@ -27,8 +27,7 @@
   box-shadow: 0 2px 2px 1px moccasin;
 }
 
-.card:focus,
-.card:hover {
+.card:focus {
   outline: none;
   border-color: gold;
   box-shadow: 0 0 0 4px moccasin;
@@ -45,6 +44,49 @@
   margin-top: 8px;
   text-align: center;
   font-size: 1.2em;
+}
+
+.form-check-input:active {
+  filter: brightness(90%);
+}
+
+.form-check-input {
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  margin: 0;
+  margin-top: 0.25em;
+  vertical-align: top;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--bs-form-check-bg);
+  background-image: var(--bs-form-check-bg-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25em;
+}
+
+.form-check-input:checked {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+  background-color: #ffc006;
+  border-color: #ffc006;
+}
+
+.form-check-input:focus {
+  outline: 0;
+  border-color: #ffc006;
+  box-shadow: 0 0 0 0.25rem #ffecb1;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: gold;
+    box-shadow: 0 0 0 4px moccasin;
+  }
 }
 
 @media (width > 576px) {
