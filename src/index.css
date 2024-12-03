@@ -1,11 +1,13 @@
 :root {
   --max-width: 900px;
   --text-primary: #444444;
+  --background-primary: #fffcde;
 }
 
-html {
+body {
   font-family: sans-serif;
   color: var(--text-primary);
+  background-color: var(--background-primary);
 }
 
 .content-wrapper {

@@ -1,0 +1,58 @@
+:root {
+  --gold: #333;
+}
+
+.statistics {
+  margin-bottom: 0.5em;
+}
+
+.card-list {
+  --padding: 8px;
+  gap: var(--padding);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: var(--padding);
+  background-color: white;
+  border: 1px solid gold;
+  border-radius: 8px;
+}
+
+.card {
+  background-color: #f6f69b;
+  padding: 8px;
+  font-size: 100%;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: 0.2s;
+  box-shadow: 0 2px 2px 1px moccasin;
+}
+
+.card:focus {
+  outline: none;
+  border-color: gold;
+  box-shadow: 0 0 0 4px moccasin;
+}
+
+.card-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.card-title {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+@media (width > 576px) {
+  .card-list {
+    --padding: 12px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card:focus {
+    box-shadow: 0 0 0 6px moccasin;
+  }
+}

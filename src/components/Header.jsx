@@ -6,7 +6,7 @@ export function Header() {
       <div className="header-title">
         <img
           src="cards.svg"
-          alt=""
+          alt="cards"
           style={{ height: '1em', verticalAlign: '-0.25em' }}
         />
         <b>Memory card</b>
