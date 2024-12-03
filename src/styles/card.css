@@ -27,7 +27,8 @@
   box-shadow: 0 2px 2px 1px moccasin;
 }
 
-.card:focus {
+.card:focus,
+.card:hover {
   outline: none;
   border-color: gold;
   box-shadow: 0 0 0 4px moccasin;
